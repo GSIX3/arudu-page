@@ -160,6 +160,8 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 }
 
 @keyframes hfiR{from{opacity:0;transform:translate(50px,40px) scale(.82);}to{opacity:1;transform:translate(0,0) scale(1);}}
+@keyframes hfiCenter{from{opacity:0;transform:translateX(-50%) translateY(30px) scale(.82);}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1);}}
+@keyframes hfiBobCenter{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(-12px);}}
 @keyframes hfiL{from{opacity:0;transform:translate(-50px,40px) scale(.82);}to{opacity:1;transform:translate(0,0) scale(1);}}
 @keyframes hfiBob1{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
 @keyframes hfiBob2{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
@@ -265,8 +267,8 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 .hero-center{
   position:relative;z-index:10;
   flex:1;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:0 clamp(.5rem,2vw,2.5rem);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+  padding:clamp(2rem,6vh,5rem) clamp(.5rem,2vw,2.5rem) 0;
   gap:clamp(.08rem,.4vh,.5rem);
   pointer-events:none;
   min-height:0;
@@ -459,34 +461,83 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 
 /* ── Tablets (768px and below) ── */
 @media(max-width:768px){
-  .cassia-tr,.cassia-bl{
-    width:clamp(90px,24vw,280px);
-  }
-  .hfi-girl{
-    width:clamp(150px,28vw,380px);
-    height:clamp(200px,75vh,600px);
-  }
-  .hfi-rabana{
-    width:clamp(170px,32vw,420px);
-    height:clamp(180px,70vh,580px);
-  }
+  .cassia-tr,.cassia-bl{width:clamp(90px,22vw,260px);}
+  .hfi-girl{width:clamp(150px,26vw,360px);height:clamp(200px,72vh,580px);}
+  .hfi-rabana{width:clamp(160px,30vw,400px);height:clamp(180px,68vh,560px);}
+
+  /* Countdown: slightly smaller text on tablets */
+  .cd-num{font-size:clamp(.85rem,2.8vw,2.4rem);}
+  .cd-unit{font-size:clamp(.2rem,.45vw,.5rem);}
+  .countdown-label{font-size:clamp(.34rem,.8vw,.68rem);}
+  .countdown-event{font-size:clamp(.32rem,.85vw,.74rem);}
 }
 
 /* ── Mobile portrait (480px and below) ── */
 @media(max-width:480px){
-  .cassia-tr,.cassia-bl{
-    width:clamp(70px,28vw,180px);
-  }
+  /* ── Cassia trees ── */
+  .cassia-tr,.cassia-bl{width:clamp(80px,32vw,170px);}
+
+  /* ── Rabana group: hide on small mobile, girl takes focus ── */
+  .hfi-rabana{display:none;}
+
+  /* ── Girl: centered, tall, prominent ── */
   .hfi-girl{
-    width:clamp(130px,38vw,260px);
-    height:clamp(160px,65vh,420px);
+    width:clamp(280px,94vw,460px);
+    height:clamp(370px,92vh,660px);
+    bottom:0;
+    left:50%;
+    right:auto;
+    transform:translateX(-50%);
+    animation:
+      hfiCenter 1.4s 1.9s cubic-bezier(.22,1,.36,1) forwards,
+      hfiBobCenter 8s 3.5s ease-in-out infinite !important;
   }
-  .hfi-rabana{
-    width:clamp(150px,44vw,300px);
-    height:clamp(150px,60vh,380px);
+
+  /* ── Countdown: tight 4-block row, no overflow ── */
+  .countdown{gap:clamp(.08rem,1.2vw,.4rem);}
+  .cd-block{
+    min-width:clamp(44px,17vw,78px);
+    padding:clamp(.2rem,.8vh,.5rem) clamp(.2rem,1.8vw,.55rem);
+    border-radius:6px;
   }
-  .countdown-label{font-size:.38rem;letter-spacing:.16em;}
-  .countdown-event{font-size:.36rem;}
+  .cd-num{font-size:clamp(.95rem,6vw,2rem);line-height:1;}
+  .cd-unit{font-size:clamp(.19rem,2vw,.44rem);letter-spacing:.1em;}
+  .cd-sep{font-size:clamp(.55rem,4.5vw,1.2rem);margin-bottom:.2rem;}
+  .countdown-label{
+    font-size:clamp(.32rem,2.2vw,.56rem);
+    letter-spacing:.08em;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:94vw;
+    text-align:center;
+  }
+  .countdown-event{
+    font-size:clamp(.32rem,2.1vw,.58rem);
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:94vw;
+    text-align:center;
+    letter-spacing:.04em;
+  }
+  .hero-countdown-bar{padding:clamp(1.2rem,4vh,2.5rem) clamp(.5rem,3vw,1.2rem) clamp(.2rem,.5vh,.4rem);}
+
+  /* ── Sun ── */
+  .sun-wrapper{width:clamp(100px,30vw,180px);height:clamp(100px,30vw,180px);}
+
+  /* ── Title ── */
+  .hero-title .line1{font-size:clamp(1rem,6.5vw,2rem);}
+  .hero-title .line2{font-size:clamp(.6rem,4vw,1.1rem);}
+  .year-text{font-size:clamp(.9rem,5vw,1.5rem);}
+  .hero-center{gap:clamp(.15rem,.5vh,.5rem);}
+}
+
+/* ── Small mobile (360px and below) ── */
+@media(max-width:360px){
+  .hfi-girl{width:clamp(230px,88vw,360px);height:clamp(300px,84vh,520px);left:50%;right:auto;transform:translateX(-50%);}
+  .cd-num{font-size:clamp(.78rem,5vw,1.5rem);}
+  .hero-title .line1{font-size:clamp(.9rem,6vw,1.7rem);}
 }
 
 /* ── Landscape short screens ── */
@@ -498,19 +549,22 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   .hero-center{gap:.06rem;}
   .sun-wrapper{width:clamp(55px,14vh,120px);height:clamp(55px,14vh,120px);margin-bottom:0;}
   .hero-title .line2{display:none;}
-  .hero-text-block{padding:.4rem 1rem;backdrop-filter:none;background:none;}
+  .hero-text-block{padding:.4rem 1rem;background:none;}
   .cassia-tr,.cassia-bl{width:clamp(60px,15vh,150px);}
-  .hfi-girl{width:clamp(120px,25vh,260px);height:clamp(140px,80vh,400px);}
-  .hfi-rabana{width:clamp(140px,30vh,300px);height:clamp(140px,75vh,380px);}
+  .hfi-girl{
+    width:clamp(120px,25vh,220px);height:clamp(140px,80vh,360px);
+    right:0;transform:none;
+  }
+  .hfi-rabana{display:block;width:clamp(130px,28vh,260px);height:clamp(130px,75vh,340px);}
 }
 
-/* ── Very short + narrow (phone landscape) ── */
+/* ── Very short landscape (phone landscape) ── */
 @media(max-height:400px){
   .hero-title .line1{font-size:clamp(.7rem,3.5vh,1.6rem);}
   .cd-num{font-size:clamp(.75rem,2.8vh,1.4rem);}
   .cassia-tr,.cassia-bl{width:clamp(50px,13vh,120px);}
-  .hfi-girl{width:clamp(100px,22vh,200px);height:clamp(120px,80vh,320px);}
-  .hfi-rabana{width:clamp(120px,26vh,230px);height:clamp(120px,75vh,300px);}
+  .hfi-girl{width:clamp(100px,22vh,180px);height:clamp(120px,80vh,280px);right:0;transform:none;}
+  .hfi-rabana{display:block;width:clamp(110px,24vh,210px);height:clamp(110px,75vh,270px);}
 }
 </style>
 </head>
