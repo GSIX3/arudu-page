@@ -268,7 +268,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   position:relative;z-index:10;
   flex:1;
   display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-  padding:clamp(2rem,6vh,5rem) clamp(.5rem,2vw,2.5rem) 0;
+  padding:clamp(.6rem,2vh,2rem) clamp(.5rem,2vw,2.5rem) 0;
   gap:clamp(.08rem,.4vh,.5rem);
   pointer-events:none;
   min-height:0;
@@ -710,12 +710,23 @@ window.addEventListener('mousemove', e => {
 })();
 
 /* ── Background Switcher ── */
-const BG   = ['assets/bg_forest.jpg', 'assets/bg_village.jpg'];
+const BG    = ['assets/bg_forest.jpg', 'assets/bg_village.jpg'];
 const bgEls = [document.getElementById('bg0'), document.getElementById('bg1')];
 bgEls[0].style.backgroundImage = `url('${BG[0]}')`;
 bgEls[1].style.backgroundImage = `url('${BG[1]}')`;
 
-let cur = Math.floor(Math.random() * BG.length);
+/*
+  On first-ever visit (no sessionStorage key) → pick random bg.
+  On page refresh (key exists in sessionStorage) → restore same bg.
+  sessionStorage is cleared when the browser tab is closed, so
+  opening a new tab always picks a fresh random bg.
+*/
+const SESSION_KEY = 'avurudu_bg';
+const stored = sessionStorage.getItem(SESSION_KEY);
+let cur = stored !== null ? parseInt(stored, 10) : Math.floor(Math.random() * BG.length);
+sessionStorage.setItem(SESSION_KEY, cur);
+
+/* Activate the chosen background */
 bgEls[cur].classList.add('active');
 document.getElementById('dot' + cur).classList.add('on');
 document.getElementById('dot' + (1 - cur)).classList.remove('on');
@@ -726,10 +737,15 @@ function switchBg(i) {
   cur = i;
   bgEls[cur].classList.add('active');
   document.getElementById('dot' + cur).classList.add('on');
+  /* Save the manually-chosen bg so refresh keeps it */
+  sessionStorage.setItem(SESSION_KEY, cur);
 }
 
-/* Auto-rotate backgrounds every 12 seconds */
-setInterval(() => switchBg((cur + 1) % BG.length), 12000);
+/* Auto-rotate backgrounds every 12 seconds, persist each rotation */
+setInterval(() => {
+  const next = (cur + 1) % BG.length;
+  switchBg(next); /* switchBg already saves to sessionStorage */
+}, 12000);
 
 /* ── Countdown Timer ── */
 const TARGET = new Date('2026-04-13T08:30:00+05:30'); // Sri Lanka time
