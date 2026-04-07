@@ -708,14 +708,16 @@ bgEls[0].style.backgroundImage = `url('${BG[0]}')`;
 bgEls[1].style.backgroundImage = `url('${BG[1]}')`;
 
 /*
-  On first-ever visit (no sessionStorage key) → pick random bg.
-  On page refresh (key exists in sessionStorage) → restore same bg.
-  sessionStorage is cleared when the browser tab is closed, so
-  opening a new tab always picks a fresh random bg.
+  On every page load → always pick the OPPOSITE of last shown bg,
+  so it guaranteed alternates each refresh. Falls back to random
+  on very first visit. Manual dot clicks also save the choice.
 */
 const SESSION_KEY = 'avurudu_bg';
 const stored = sessionStorage.getItem(SESSION_KEY);
-let cur = stored !== null ? parseInt(stored, 10) : Math.floor(Math.random() * BG.length);
+/* Always switch to the other background on refresh */
+let cur = stored !== null
+  ? (parseInt(stored, 10) + 1) % BG.length   /* flip to other bg */
+  : Math.floor(Math.random() * BG.length);    /* first visit: random */
 sessionStorage.setItem(SESSION_KEY, cur);
 
 /* Activate the chosen background */
@@ -729,7 +731,6 @@ function switchBg(i) {
   cur = i;
   bgEls[cur].classList.add('active');
   document.getElementById('dot' + cur).classList.add('on');
-  /* Save the manually-chosen bg so refresh keeps it */
   sessionStorage.setItem(SESSION_KEY, cur);
 }
 
