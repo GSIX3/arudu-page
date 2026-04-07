@@ -142,8 +142,8 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 
 /* Girl — right side, tall, bottom-anchored */
 .hfi-girl{
-  width:clamp(180px, 30vw, 600px);
-  height:clamp(240px, 88vh, 950px);
+  width:clamp(160px, 27vw, 520px);
+  height:clamp(220px, 78vh, 820px);
   bottom:0;right:0;
   animation:
     hfiR 1.4s 1.9s cubic-bezier(.22,1,.36,1) forwards,
@@ -151,8 +151,8 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 }
 /* Rabana group — left side, tall, bottom-anchored */
 .hfi-rabana{
-  width:clamp(200px, 34vw, 680px);
-  height:clamp(220px, 82vh, 900px);
+  width:clamp(160px, 27vw, 520px);
+  height:clamp(220px, 78vh, 820px);
   bottom:0;left:0;
   animation:
     hfiL 1.4s 2.2s cubic-bezier(.22,1,.36,1) forwards,
@@ -377,25 +377,27 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 .hero-title .line1{
   display:block;
   font-family:'Cinzel Decorative',cursive;
-  font-size:clamp(1.1rem,5vmin,5.4rem);
+  font-size:clamp(1.6rem,7.5vmin,8rem);
   font-weight:900;
-  /* Clean white with strong legible shadow — no blue tint */
-  color:#fff;
+  color:#ffffff;
   text-shadow:
-    0 2px 4px rgba(0,0,0,.9),
-    0 4px 20px rgba(0,0,0,.85),
-    0 0 60px rgba(255,200,0,.25);
-  line-height:1.08;letter-spacing:.04em;
+    0 2px 6px rgba(0,0,0,.95),
+    0 5px 28px rgba(0,0,0,.90),
+    0 0 70px rgba(255,200,0,.18);
+  line-height:1.22;letter-spacing:.04em;
+  margin-bottom:clamp(.3rem,1vh,.8rem);
 }
 .hero-title .line2{
   display:block;
   font-family:'Noto Serif Sinhala',serif;
-  font-size:clamp(.7rem,2.6vmin,2.5rem);
-  color:rgba(255,248,220,1);
+  font-size:clamp(1rem,3.8vmin,3.8rem);
+  color:#ffffff;
   text-shadow:
     0 2px 6px rgba(0,0,0,.95),
-    0 4px 20px rgba(0,0,0,.80);
-  margin-top:.3em;letter-spacing:.05em;
+    0 5px 24px rgba(0,0,0,.90);
+  margin-top:clamp(.4rem,1.2vh,1rem);
+  margin-bottom:clamp(.3rem,1vh,.8rem);
+  letter-spacing:.06em;
 }
 
 /* ── Divider ── */
@@ -415,8 +417,8 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 }
 .year-text{
   font-family:'Cinzel Decorative',cursive;
-  font-size:clamp(1rem,3vmin,2.8rem);
-  letter-spacing:.28em;
+  font-size:clamp(1.3rem,4.2vmin,4rem);
+  letter-spacing:.32em;
   background:linear-gradient(180deg,#FFF5A0,#FFD700,#FFC200);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   filter:drop-shadow(0 0 18px rgba(255,200,0,.65));
@@ -463,7 +465,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 @media(max-width:768px){
   .cassia-tr,.cassia-bl{width:clamp(90px,22vw,260px);}
   .hfi-girl{width:clamp(150px,26vw,360px);height:clamp(200px,72vh,580px);}
-  .hfi-rabana{width:clamp(160px,30vw,400px);height:clamp(180px,68vh,560px);}
+  .hfi-rabana{width:clamp(150px,26vw,360px);height:clamp(200px,72vh,580px);}
 
   /* Countdown: slightly smaller text on tablets */
   .cd-num{font-size:clamp(.85rem,2.8vw,2.4rem);}
@@ -478,19 +480,47 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   .cassia-tr,.cassia-bl{width:clamp(80px,32vw,170px);}
 
   /* ── Rabana group: hide on small mobile, girl takes focus ── */
-  .hfi-rabana{display:none;}
-
-  /* ── Girl: centered, tall, prominent ── */
-  .hfi-girl{
-    width:clamp(280px,94vw,460px);
-    height:clamp(370px,92vh,660px);
+  .hero-float-images{
+    position:absolute;
     bottom:0;
-    left:50%;
-    right:auto;
-    transform:translateX(-50%);
+    left:0;
+    right:0;
+    width:100%;
+    height:auto;
+    display:flex;
+    flex-direction:row;
+    align-items:flex-end;
+    justify-content:center;
+    gap:0;
+    transform:none;
+  }
+
+  /* Man — left of center */
+  .hfi-rabana{
+    display:block;
+    inset:auto !important;
+   width: clamp(300px, 85vw, 650px);
+height: clamp(600px, 100vh, 950px);
+    flex-shrink:0;
+    margin-left:-32%;
+    
+    transform:none !important;
+    z-index:12;
+    animation:hfiL 1.4s 2.2s cubic-bezier(.22,1,.36,1) forwards,hfiBob1 9s 3.8s ease-in-out infinite;
+  }
+
+  /* Girl — right of center, slightly taller, in front */
+  .hfi-girl{
+    inset:auto !important;
+    width: clamp(300px, 85vw, 650px);
+height: clamp(600px, 100vh, 950px);
+    flex-shrink:0;
+    margin-right:-20%;
+    transform:none !important;
+    z-index:13;
     animation:
-      hfiCenter 1.4s 1.9s cubic-bezier(.22,1,.36,1) forwards,
-      hfiBobCenter 8s 3.5s ease-in-out infinite !important;
+      hfiR 1.4s 1.9s cubic-bezier(.22,1,.36,1) forwards,
+      hfiBob2 8s 3.5s ease-in-out infinite !important;
   }
 
   /* ── Countdown: tight 4-block row, no overflow ── */
@@ -660,7 +690,8 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
     </div>
     <div class="hero-text-block">
       <h1 class="hero-title">
-        <span class="line1">Sinhala &amp; Tamil New Year</span>
+        <span class="line1">Sinhala &amp; Tamil</span>
+        <span class="line1">New Year</span>
         <span class="line2">සුභ අලුත් අවුරුදක් වේවා</span>
       </h1>
       <div class="hero-divider">
