@@ -503,15 +503,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   .cd-num{font-size:clamp(.95rem,6vw,2rem);line-height:1;}
   .cd-unit{font-size:clamp(.19rem,2vw,.44rem);letter-spacing:.1em;}
   .cd-sep{font-size:clamp(.55rem,4.5vw,1.2rem);margin-bottom:.2rem;}
-  .countdown-label{
-    font-size:clamp(.32rem,2.2vw,.56rem);
-    letter-spacing:.08em;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    max-width:94vw;
-    text-align:center;
-  }
+  .countdown-label{display:none;}
   .countdown-event{
     font-size:clamp(.32rem,2.1vw,.58rem);
     white-space:nowrap;
@@ -741,11 +733,7 @@ function switchBg(i) {
   sessionStorage.setItem(SESSION_KEY, cur);
 }
 
-/* Auto-rotate backgrounds every 12 seconds, persist each rotation */
-setInterval(() => {
-  const next = (cur + 1) % BG.length;
-  switchBg(next); /* switchBg already saves to sessionStorage */
-}, 12000);
+
 
 /* ── Countdown Timer ── */
 const TARGET = new Date('2026-04-13T08:30:00+05:30'); // Sri Lanka time
