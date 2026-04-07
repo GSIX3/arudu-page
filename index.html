@@ -153,7 +153,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 .hfi-rabana{
   width:clamp(160px, 27vw, 520px);
   height:clamp(220px, 78vh, 820px);
-  bottom:-2%;left:-3%;
+  bottom:-2%;left:-1%;
   animation:
     hfiL 1.4s 2.2s cubic-bezier(.22,1,.36,1) forwards,
     hfiBob1 9s 3.8s ease-in-out infinite;
@@ -434,15 +434,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   gap:.4rem;
   opacity:0;animation:fadeUp .8s 1.5s ease forwards;
 }
-.bg-dots{display:flex;gap:10px;}
-.bg-dot{
-  width:11px;height:11px;border-radius:50%;
-  background:rgba(255,215,80,.3);
-  border:1.5px solid rgba(255,215,80,.6);
-  cursor:pointer;transition:background .3s,transform .2s;
-}
-.bg-dot.on{background:rgba(255,215,80,.95);transform:scale(1.3);}
-.bg-dot:hover{background:rgba(255,215,80,.7);}
+
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
@@ -502,7 +494,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
    width: clamp(260px, 75vw, 520px);
 height: clamp(460px, 87vh, 720px);
     flex-shrink:0;
-    margin-left:-32%;
+    margin-left:-21%;
     
     transform:none !important;
     z-index:12;
@@ -515,7 +507,7 @@ height: clamp(460px, 87vh, 720px);
    width: clamp(260px, 75vw, 520px);
 height: clamp(460px, 87vh, 720px);
     flex-shrink:0;
-    margin-right:-20%;
+    margin-right:-23%;
     transform:none !important;
     z-index:13;
     animation:
@@ -712,6 +704,7 @@ height: clamp(460px, 87vh, 720px);
     <div class="bg-dot" id="dot1" onclick="switchBg(1)" title="Village"></div>
     <div class="bg-dot" id="dot2" onclick="switchBg(2)" title="Village Road"></div>
   </div>
+  <p style="font-family:'Cinzel',serif;font-size:clamp(.52rem,.77vw,.72rem);letter-spacing:.22em;color:rgba(255, 255, 255, 0.764);margin-top:.3rem;">Powered by gsix3</p>
 </div>
 </section>
 
