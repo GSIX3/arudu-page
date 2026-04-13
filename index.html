@@ -81,7 +81,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
    preferred: ~28vw on wide, ~22vh on short
 ══════════════════════════════════════════ */
 .cassia-tr{
-  position:absolute;top:0;right:0;
+  position:absolute;top:-1%;right:-1%;
   /* Responsive size: bigger on wide screens, controlled on mobile */
   width:clamp(110px, min(28vw, 36vh), 520px);
   z-index:9;pointer-events:none;
@@ -96,7 +96,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   transform-origin:top right;
 }
 .cassia-bl{
-  position:absolute;top:0;left:0;
+  position:absolute;top:-1%;left:-1%;
   width:clamp(110px, min(28vw, 36vh), 520px);
   z-index:9;pointer-events:none;
   opacity:0;
@@ -184,84 +184,6 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 @keyframes wingFlap{0%{transform:scaleY(1);}100%{transform:scaleY(.5);}}
 
 /* ══════════════════════════════════════════
-   ROW 1 — COUNTDOWN BAR (top)
-══════════════════════════════════════════ */
-.hero-countdown-bar{
-  position:relative;z-index:25;
-  display:flex;flex-direction:column;align-items:center;
-  gap:clamp(.08rem,.3vh,.35rem);
-  opacity:0;animation:fadeSlideDown 1s .6s cubic-bezier(.65,0,.35,1) forwards;
-  padding:clamp(.5rem,1.5vh,1.1rem) 1rem clamp(.2rem,.5vh,.5rem);
-  width:100%;
-}
-@keyframes fadeSlideDown{from{opacity:0;transform:translateY(-12px);}to{opacity:1;transform:translateY(0);}}
-
-.countdown-label{
-  font-family:'Cinzel',serif;
-  font-size:clamp(.38rem,.9vw,.75rem);
-  letter-spacing:.26em;text-transform:uppercase;
-  background:linear-gradient(90deg,#FFD700,#FFFACD,#FF8C00);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 1px 6px rgba(0,0,0,.85));
-}
-
-.countdown{
-  display:flex;gap:clamp(.12rem,.45vw,.55rem);
-  align-items:center;justify-content:center;flex-wrap:nowrap;
-}
-
-.cd-block{
-  display:flex;flex-direction:column;align-items:center;
-  background:rgba(0,0,0,.52);
-  border:1.5px solid rgba(255,215,80,.80);
-  border-top:3px solid rgba(255,235,80,1);
-  border-radius:clamp(4px,.8vw,10px);
-  padding:clamp(.2rem,.5vh,.55rem) clamp(.35rem,1vw,1rem);
-  min-width:clamp(40px,7vw,90px);
-  backdrop-filter:blur(18px);
-  position:relative;overflow:hidden;
-  transition:transform .25s,box-shadow .25s;
-}
-.cd-block:hover{transform:translateY(-4px) scale(1.05);box-shadow:0 8px 28px rgba(255,210,0,.32);}
-.cd-block::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(255,235,0,.28) 0%,transparent 55%);
-}
-.cd-num{
-  font-family:'Cinzel Decorative',cursive;
-  font-size:clamp(.9rem,3.2vw,2.8rem);font-weight:700;
-  background:linear-gradient(180deg,#FFF9A0 0%,#FFD700 50%,#FFA500 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 0 10px rgba(255,200,0,.75));
-  line-height:1;position:relative;
-}
-.cd-num.update{animation:tick .3s ease;}
-@keyframes tick{0%{transform:scale(1);}50%{transform:scale(1.18);}100%{transform:scale(1);}}
-.cd-unit{
-  font-family:'Cinzel',serif;
-  font-size:clamp(.22rem,.5vw,.56rem);
-  letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(255,245,175,.95);
-  margin-top:.1rem;position:relative;
-}
-.cd-sep{
-  font-family:'Cinzel Decorative',cursive;
-  font-size:clamp(.65rem,2vw,1.8rem);font-weight:700;
-  background:linear-gradient(180deg,#FFF176,#FFD700);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 0 12px rgba(255,210,0,.8));
-  margin-bottom:clamp(.14rem,.35vh,.4rem);
-}
-.countdown-event{
-  font-family:'Noto Serif Sinhala',serif;
-  font-size:clamp(.34rem,.95vw,.82rem);
-  background:linear-gradient(90deg,#FFFDE7,#FFD54F,#FFFDE7);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 1px 8px rgba(0,0,0,.95));
-  text-align:center;margin-top:.12rem;
-}
-
-/* ══════════════════════════════════════════
    ROW 2 — CENTER CONTENT (sun + title)
 ══════════════════════════════════════════ */
 .hero-center{
@@ -282,7 +204,8 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
   animation:sunFloat 6s ease-in-out infinite;z-index:20;
-  /* pull sun slightly up so it doesn't crowd the title */
+  /* pull sun slightly up */
+  margin-top:clamp(-18px,-2.5vmin,-8px);
   margin-bottom:clamp(-10px,-1.5vmin,-4px);
 }
 @keyframes sunFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-16px);}}
@@ -363,6 +286,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   pointer-events:none;
   background:none;
   padding:0 clamp(1rem,4vw,3rem);
+  margin-top:clamp(1.5rem,5vh,3.5rem);
 }
 
 /* ── Title ── */
@@ -377,7 +301,7 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
 .hero-title .line1{
   display:block;
   font-family:'Cinzel Decorative',cursive;
-  font-size:clamp(1.6rem,7.5vmin,8rem);
+  font-size:clamp(1.6rem,6.5vmin,7.5rem);
   font-weight:900;
   color:#ffffff;
   text-shadow:
@@ -459,17 +383,12 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   .hfi-girl{width:clamp(150px,26vw,360px);height:clamp(200px,72vh,580px);}
   .hfi-rabana{width:clamp(150px,26vw,360px);height:clamp(200px,72vh,580px);}
 
-  /* Countdown: slightly smaller text on tablets */
-  .cd-num{font-size:clamp(.85rem,2.8vw,2.4rem);}
-  .cd-unit{font-size:clamp(.2rem,.45vw,.5rem);}
-  .countdown-label{font-size:clamp(.34rem,.8vw,.68rem);}
-  .countdown-event{font-size:clamp(.32rem,.85vw,.74rem);}
 }
 
 /* ── Mobile portrait (480px and below) ── */
 @media(max-width:480px){
   /* ── Cassia trees ── */
-  .cassia-tr,.cassia-bl{width:clamp(80px,32vw,170px);}
+  .cassia-tr,.cassia-bl{width:clamp(100px,40vw,210px);}
 
   /* ── Rabana group: hide on small mobile, girl takes focus ── */
   .hero-float-images{
@@ -491,8 +410,8 @@ body{font-family:'Crimson Pro',serif;cursor:none;}
   .hfi-rabana{
     display:block;
     inset:auto !important;
-   width: clamp(260px, 50vw, 520px);
-height: clamp(300px, 75vh, 500px);
+    width: clamp(260px, 50vw, 520px);
+    height: clamp(300px, 75vh, 500px);
     flex-shrink:0;
     margin-left:-28%;
     
@@ -504,8 +423,8 @@ height: clamp(300px, 75vh, 500px);
   /* Girl — right of center, slightly taller, in front */
   .hfi-girl{
     inset:auto !important;
-   width: clamp(260px, 75vw, 520px);
-height: clamp(460px, 87vh, 720px);
+    width: clamp(260px, 75vw, 520px);
+    height: clamp(460px, 87vh, 720px);
     flex-shrink:0;
     margin-right:-23%;
     transform:none !important;
@@ -515,51 +434,27 @@ height: clamp(460px, 87vh, 720px);
       hfiBob2 8s 3.5s ease-in-out infinite !important;
   }
 
-  /* ── Countdown: tight 4-block row, no overflow ── */
-  .countdown{gap:clamp(.08rem,1.2vw,.4rem);}
-  .cd-block{
-    min-width:clamp(44px,17vw,78px);
-    padding:clamp(.2rem,.8vh,.5rem) clamp(.2rem,1.8vw,.55rem);
-    border-radius:6px;
-  }
-  .cd-num{font-size:clamp(.95rem,6vw,2rem);line-height:1;}
-  .cd-unit{font-size:clamp(.19rem,2vw,.44rem);letter-spacing:.1em;}
-  .cd-sep{font-size:clamp(.55rem,4.5vw,1.2rem);margin-bottom:.2rem;}
-  .countdown-label{display:none;}
-  .countdown-event{
-    font-size:clamp(.32rem,2.1vw,.58rem);
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    max-width:94vw;
-    text-align:center;
-    letter-spacing:.04em;
-  }
-  .hero-countdown-bar{padding:clamp(1.2rem,4vh,2.5rem) clamp(.5rem,3vw,1.2rem) clamp(.2rem,.5vh,.4rem);}
-
   /* ── Sun ── */
   .sun-wrapper{width:clamp(100px,30vw,180px);height:clamp(100px,30vw,180px);}
 
   /* ── Title ── */
-  .hero-title .line1{font-size:clamp(1rem,6.5vw,2rem);}
+  .hero-title .line1{font-size:clamp(1rem,5.5vw,2rem);}
   .hero-title .line2{font-size:clamp(.6rem,4vw,1.1rem);}
   .year-text{font-size:clamp(.9rem,5vw,1.5rem);}
   .hero-center{gap:clamp(.15rem,.5vh,.5rem);}
+
+  /* ── Push text block only slightly lower on mobile ── */
+  .hero-text-block{margin-top:clamp(.2rem,1.5vh,.8rem);}
 }
 
 /* ── Small mobile (360px and below) ── */
 @media(max-width:360px){
   .hfi-girl{width:clamp(230px,88vw,360px);height:clamp(300px,84vh,520px);left:50%;right:auto;transform:translateX(-50%);}
-  .cd-num{font-size:clamp(.78rem,5vw,1.5rem);}
   .hero-title .line1{font-size:clamp(.9rem,6vw,1.7rem);}
 }
 
 /* ── Landscape short screens ── */
 @media(max-height:520px){
-  .hero-countdown-bar{padding-top:.3rem;padding-bottom:.1rem;gap:.06rem;}
-  .countdown-label{display:none;}
-  .countdown-event{display:none;}
-  .cd-sep{font-size:.6rem;}
   .hero-center{gap:.06rem;}
   .sun-wrapper{width:clamp(55px,14vh,120px);height:clamp(55px,14vh,120px);margin-bottom:0;}
   .hero-title .line2{display:none;}
@@ -575,7 +470,6 @@ height: clamp(460px, 87vh, 720px);
 /* ── Very short landscape (phone landscape) ── */
 @media(max-height:400px){
   .hero-title .line1{font-size:clamp(.7rem,3.5vh,1.6rem);}
-  .cd-num{font-size:clamp(.75rem,2.8vh,1.4rem);}
   .cassia-tr,.cassia-bl{width:clamp(50px,13vh,120px);}
   .hfi-girl{width:clamp(100px,22vh,180px);height:clamp(120px,80vh,280px);right:0;transform:none;}
   .hfi-rabana{display:block;width:clamp(110px,24vh,210px);height:clamp(110px,75vh,270px);}
@@ -645,33 +539,6 @@ height: clamp(460px, 87vh, 720px);
     </svg>
   </div>
 
-  <!-- ROW 1: Countdown -->
-  <div class="hero-countdown-bar">
-    <p class="countdown-label">✦ Countdown to Aluth Avurudu Neketha ✦</p>
-    <div class="countdown">
-      <div class="cd-block">
-        <span class="cd-num" id="cd-days">00</span>
-        <span class="cd-unit">Days</span>
-      </div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block">
-        <span class="cd-num" id="cd-hours">00</span>
-        <span class="cd-unit">Hours</span>
-      </div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block">
-        <span class="cd-num" id="cd-mins">00</span>
-        <span class="cd-unit">Minutes</span>
-      </div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block">
-        <span class="cd-num" id="cd-secs">00</span>
-        <span class="cd-unit">Seconds</span>
-      </div>
-    </div>
-    <p class="countdown-event">අප්‍රේල් 13–14, 2026 &nbsp;·&nbsp; සිංහල හා දෙමළ අලුත් අවුරුද්ද</p>
-  </div>
-
   <!-- ROW 2: Sun + Title + Divider -->
   <div class="hero-center">
     <div class="sun-wrapper">
@@ -683,9 +550,10 @@ height: clamp(460px, 87vh, 720px);
     </div>
     <div class="hero-text-block">
       <h1 class="hero-title">
+        <span class="line1">Wishing you a Happy</span>
         <span class="line1">Sinhala &amp; Tamil</span>
         <span class="line1">New Year</span>
-        <span class="line2">සුභ අලුත් අවුරුදක් වේවා</span>
+        <span class="line2">ඔබ සැමට සුභ අලුත් අවුරුදක් වේවා</span>
       </h1>
       <div class="hero-divider">
         <div class="dline"></div>
@@ -762,35 +630,6 @@ function switchBg(i) {
 }
 
 
-
-/* ── Countdown Timer ── */
-const TARGET = new Date('2026-04-13T08:30:00+05:30'); // Sri Lanka time
-function tick() {
-  const diff = TARGET - new Date();
-  const g = id => document.getElementById(id);
-  if (diff <= 0) {
-    ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => g(id).textContent = '00');
-    return;
-  }
-  const vals = {
-    'cd-days' : Math.floor(diff / 864e5),
-    'cd-hours': Math.floor((diff % 864e5) / 36e5),
-    'cd-mins' : Math.floor((diff % 36e5) / 6e4),
-    'cd-secs' : Math.floor((diff % 6e4) / 1e3)
-  };
-  for (const [id, val] of Object.entries(vals)) {
-    const s = String(val).padStart(2, '0');
-    const el = g(id);
-    if (el.textContent !== s) {
-      el.textContent = s;
-      el.classList.remove('update');
-      void el.offsetWidth; // force reflow
-      el.classList.add('update');
-    }
-  }
-}
-tick();
-setInterval(tick, 1000);
 
 /* ── Particle System ── */
 const canvas = document.getElementById('particles');
